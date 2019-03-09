@@ -1,5 +1,6 @@
 {
     "devDependencies": {
+        "@babel/preset-react": "^7.0.0",
         "@symfony/webpack-encore": "^0.22.0",
         "webpack-notifier": "^1.6.0"
     },
