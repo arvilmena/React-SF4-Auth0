@@ -15,6 +15,7 @@
     "dependencies": {
         "@babel/plugin-proposal-class-properties": "^7.3.4",
         "@babel/plugin-transform-runtime": "^7.3.4",
+        "auth0-js": "^9.10.0",
         "axios": "^0.18.0",
         "prop-types": "^15.7.2",
         "react": "^16.8.4",
