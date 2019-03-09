@@ -51,8 +51,15 @@ Encore
     //.autoProvidejQuery()
 
     // uncomment if you use API Platform Admin (composer req api-admin)
-    //.enableReactPreset()
+    .enableReactPreset()
     //.addEntry('admin', './assets/js/admin.js')
+    
+    .configureBabel(function (babelConfig) {
+        babelConfig.plugins = [
+            "@babel/plugin-proposal-object-rest-spread","@babel/plugin-proposal-class-properties",
+            "@babel/plugin-transform-runtime"
+        ]
+    })
 ;
 
 module.exports = Encore.getWebpackConfig();
