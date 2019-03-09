@@ -4,22 +4,18 @@ namespace App\Security;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class WebServiceUser implements UserInterface
+class WebServiceUser implements UserInterface, EquatableInterface
 {
-    private $email;
 
     private $roles = [];
 
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
+    private $jwt;
 
-    public function setEmail(string $email): self
+    public function __construct($jwt, array $roles)
     {
-        $this->email = $email;
-
-        return $this;
+        $this->jwt = $jwt;
+        $this->roles = $roles;
+        
     }
 
     /**
@@ -29,7 +25,7 @@ class WebServiceUser implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return isset($this->jwt["email"]) ? $this->jwt["email"] : $this->jwt["sub"];
     }
 
     /**
@@ -37,11 +33,7 @@ class WebServiceUser implements UserInterface
      */
     public function getRoles(): array
     {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
+        return $this->roles;
     }
 
     public function setRoles(array $roles): self
@@ -57,6 +49,7 @@ class WebServiceUser implements UserInterface
     public function getPassword()
     {
         // not needed for apps that do not check user passwords
+        return null;
     }
 
     /**
@@ -74,5 +67,16 @@ class WebServiceUser implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function isEqualTo(UserInterface $user) {
+        if (!$user instanceof WebServiceUser) {
+            return false;
+        }
+        if ($this->getUsername() !== $user->getUsername()) {
+            return false;
+        }
+
+        return true;
     }
 }
