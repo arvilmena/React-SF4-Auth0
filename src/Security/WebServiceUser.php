@@ -3,6 +3,7 @@
 namespace App\Security;
 
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 
 class WebServiceUser implements UserInterface, EquatableInterface
 {
