@@ -5,7 +5,7 @@ class Auth {
         this.auth0 = new auth0.WebAuth({
             domain: 'arvil.auth0.com',
             audience: 'http://sf-react-auth0.test/api',
-            clientID: 'xwbyfFlptC4mdLtJwVmxX3Fh0hhtkl4a',
+            clientID: 'JucGZsEWOX0A6wQFVEJaSxi30fimySJR',
             redirectUri: 'http://sf-react-auth0.test/callback',
             responseType: 'token id_token',
             scope: 'openid profile'
@@ -57,7 +57,7 @@ class Auth {
 
         this.auth0.logout({
             returnTo: 'http://sf-react-auth0.test/logout',
-            clientID: 'xwbyfFlptC4mdLtJwVmxX3Fh0hhtkl4a',
+            clientID: 'JucGZsEWOX0A6wQFVEJaSxi30fimySJR',
         });
     }
 

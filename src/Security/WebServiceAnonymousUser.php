@@ -10,8 +10,8 @@ class WebServiceAnonymousUser extends WebServiceUser
         parent::__construct(null, array('IS_AUTHENTICATED_ANONYMOUSLY'));
     }
 
-    public function getUsername() : string
+    public function getUsername()
     {
-        return '';
+        return null;
     }
 }

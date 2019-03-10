@@ -24,7 +24,7 @@ class WebServiceUser implements UserInterface, EquatableInterface
      *
      * @see UserInterface
      */
-    public function getUsername(): string
+    public function getUsername()
     {
         return isset($this->jwt["email"]) ? $this->jwt["email"] : $this->jwt["sub"];
     }
