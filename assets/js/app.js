@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import Home from "./components/Home";
+import '../scss/app.scss';
 
 class App extends Component {
     render() {
