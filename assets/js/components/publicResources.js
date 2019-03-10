@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import { Card, CardText, CardBody,CardTitle, Container,Row, Col, Badge  } from 'reactstrap';
 import axios from 'axios';
+import appConfig from '../config';
 
 class FetchResourcePublic extends Component {
 
@@ -19,7 +20,7 @@ class FetchResourcePublic extends Component {
 
     fetchPublicResources() {
         if (!this.state.publicResources) {
-            axios.get('http://sf-react-auth0.test/api/public').then(res => {
+            axios.get(appConfig.api.public).then(res => {
                 this.setState({publicResources: res.data});
             })
         }

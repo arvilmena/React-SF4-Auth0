@@ -62,4 +62,32 @@ Encore
     })
 ;
 
-module.exports = Encore.getWebpackConfig();
+let config = Encore.getWebpackConfig();
+config.watchOptions = { poll: true, ignored: /node_modules/ };
+
+var BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+config.plugins.push(
+    new BrowserSyncPlugin(
+        {
+            host: 'localhost',
+            port: 8081,
+            proxy: 'http://sf-react-auth0.test',
+            files: [ // watch on changes
+                {
+                    match: ['public/build/**/*.js'],
+                    fn: function (event, file) {
+                        if (event === 'change') {
+                            const bs = require('browser-sync').get('bs-webpack-plugin');
+                            bs.reload();
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            reload: false, // this allow webpack server to take care of instead browser sync
+            name: 'bs-webpack-plugin',
+        },
+    )
+);
+module.exports = config;

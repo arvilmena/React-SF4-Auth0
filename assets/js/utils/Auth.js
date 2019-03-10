@@ -1,12 +1,13 @@
 import auth0 from 'auth0-js';
+import appConfig from './../config.js';
 
 class Auth {
     constructor() {
         this.auth0 = new auth0.WebAuth({
-            domain: 'arvil.auth0.com',
-            audience: 'http://sf-react-auth0.test/api',
-            clientID: 'JucGZsEWOX0A6wQFVEJaSxi30fimySJR',
-            redirectUri: 'http://sf-react-auth0.test/callback',
+            domain: appConfig.auth0.domain,
+            audience: appConfig.auth0.audience,
+            clientID: appConfig.auth0.clientID,
+            redirectUri: appConfig.auth0.callbackRedirectUri,
             responseType: 'token id_token',
             scope: 'openid profile'
         });
@@ -56,8 +57,8 @@ class Auth {
     logOut() {
 
         this.auth0.logout({
-            returnTo: 'http://sf-react-auth0.test/logout',
-            clientID: 'JucGZsEWOX0A6wQFVEJaSxi30fimySJR',
+            returnTo: appConfig.auth0.logoutUri,
+            clientID: appConfig.auth0.clientID,
         });
     }
 

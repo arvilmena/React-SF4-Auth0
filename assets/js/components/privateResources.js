@@ -5,6 +5,7 @@ import {withRouter} from 'react-router-dom';
 import { Card, CardText, CardBody,CardTitle, Container,Row, Col, Badge  } from 'reactstrap';
 import axios from 'axios';
 import auth0Client from '../utils/Auth';
+import appConfig from '../config';
 
 class FetchResourcePrivate extends Component {
 
@@ -25,7 +26,7 @@ class FetchResourcePrivate extends Component {
     fetchPrivateResources () {
         if (!this.state.privateResources) {
             this.setState({ isLoading: true});
-            axios.get('http://sf-react-auth0.test/api/private', {
+            axios.get(appConfig.api.private, {
                     headers: {'authorization': `Bearer ${auth0Client.getAccessToken()}`}
                 }
             ).then(res => { this.setState({privateResources: res.data, isLoading: false}); })
