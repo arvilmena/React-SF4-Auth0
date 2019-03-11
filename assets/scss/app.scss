@@ -1,5 +1,9 @@
-// customize some Bootstrap variables
-$primary: darken(#428bca, 20%);
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/mixins';
+@import './abstracts/my-custom-bootstrap4-variables';
 
 // the ~ allows you to reference things in node_modules
 @import '~bootstrap/scss/bootstrap';
+
+// our components.
+@import './bootstrap-components';

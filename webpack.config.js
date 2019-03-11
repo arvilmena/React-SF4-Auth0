@@ -74,14 +74,24 @@ config.plugins.push(
             proxy: 'http://sf-react-auth0.test',
             files: [ // watch on changes
                 {
-                    match: ['public/build/**/*.js'],
+                    match: ['src/**/*.php', 'templates/**/*.twig'],
+                    // match: ['public/build/**/*.js', 'src/**/*.php', 'templates/**/*.twig'],
                     fn: function (event, file) {
                         if (event === 'change') {
                             const bs = require('browser-sync').get('bs-webpack-plugin');
                             bs.reload();
                         }
                     }
-                }
+                },
+                // {
+                //     match: ['public/build/**/*.css'],
+                //     fn: function (event, file) {
+                //         if (event === 'change') {
+                //             const bs = require('browser-sync').get('bs-webpack-plugin');
+                //             bs.reload({stream: true});
+                //         }
+                //     }
+                // }
             ]
         },
         {

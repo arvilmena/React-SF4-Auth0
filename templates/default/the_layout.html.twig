@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Symfony Auth0 API {% endblock %}
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/js/tether.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha256-CjSoeELFOcH0/uxWu6mC/Vlrc1AARqbm/jiiImDGV3s=" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block body %}
+<div class="container px-0">
+    {# <div class="row no-gutters">
+        <div class="col col-12"> #}
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+                <a class="navbar-brand" href="/">ClassifiedAds</a>
+
+                <ul class="navbar-nav d-block d-md-none ml-auto">
+                    <li class="nav-item">
+                      <a class="nav-link">Arvil Meña</a>
+                    </li>
+                </ul>
+                
+                <button class="navbar-toggler ml-3" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link">Arvil Meña</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Login</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Sign out</a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+        {# </div>
+    </div> #}
+</div>
+
+<div class="container px-0">
+    <div class="row">
+        <div class="col col-12">
+            <div class="jumbotron">
+                <h1 class="display-4">Free ClassifiedAds listing!!</h1>
+                <p class="lead">Welcome to the newest ClassifiedAds listing site, this site uses the most modern technology to provide the best user experience for our audience. To get started click the button below.</p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col col-12">
+            <div class="card-columns">
+                    {% for job in jobs %}
+                    {% set type = random(3) %}
+                        <div class="card">
+                            {% if (job.has_image) %}
+                                <img class="card-img-top" src="{{ job.image_url }}" alt="Card image cap">
+                            {% endif %}
+                            <div class="card-body">
+                                <p class="card-text text-left"><small class="text-muted">{{ job.city }}</small></p>
+                                <h5 class="card-title">{{ job.title }} {% if (job.type == 3) %}<span class="badge badge-success">For sale</span>{% elseif (job.type == 2) %}<span class="badge badge-danger">Wanted</span>{% else %}<span class="badge badge-warning">Services</span>{% endif %}</h5>
+                                <p class="card-text">{{ job.description }}</p>
+                                <a href="tel:{{ job.contact_number }}" class="btn btn-primary">Contact</a>
+                                <p class="card-text text-right mt-2"><small class="text-muted">Posted {{ job.posted_at|date('F j, Y') }}<br />by {{ job.posted_by }}.</small></p>
+                            </div>
+                        </div>
+                    {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="row my-5">
+        <div class="col col-12 text-center">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+        </div>
+        <div class="col col-12 text-center">
+            <p>Reached the end of listing.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
